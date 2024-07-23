@@ -1,25 +1,25 @@
-const inputNumber = document.querySelector("input");
-const btn = document.querySelectorAll("button");
+const inputNumber = document.querySelector('input');
+const btn = document.querySelectorAll('button');
 const btnCreate = btn[0];
 const btnDestroy = btn[1];
-btnCreate.className = "create";
-btnDestroy.className = "destroy";
-const divBox = document.querySelector("#boxes");
+btnCreate.className = 'create';
+btnDestroy.className = 'destroy';
+const divBox = document.querySelector('#boxes');
 let numberValue = 0;
 let newDivArray = [];
 
-function addValue() {
+function addNumberValue() {
   numberValue = inputNumber.value;
 }
 
 function destroy() {
-  divBox.innerHTML = "";
+  divBox.innerHTML = '';
   numberValue = 0;
 }
 
-function getRandomHexColor() {
+function addNewFigures() {
   let widthDiv = 30;
-  divBox.innerHTML = "";
+  divBox.innerHTML = '';
 
   if (numberValue > 0 && numberValue <= 100) {
     for (let i = 1; i <= numberValue; i++) {
@@ -31,13 +31,18 @@ function getRandomHexColor() {
       );
       widthDiv += 10;
     }
-    const newDivString = newDivArray.join("");
-    divBox.insertAdjacentHTML("beforeend", newDivString);
+    // поза циклом
+    const newDivString = newDivArray.join('');
+
+    // додається в розмітку HTML тільки один раз
+
+    console.log(newDivString);
+    divBox.insertAdjacentHTML('beforeend', newDivString);
     newDivArray = [];
   }
-  inputNumber.value = "";
+  inputNumber.value = '';
 }
 
-btnCreate.addEventListener("click", getRandomHexColor);
-inputNumber.addEventListener("blur", addValue);
-btnDestroy.addEventListener("click", destroy);
+btnCreate.addEventListener('click', addNewFigures);
+inputNumber.addEventListener('blur', addNumberValue);
+btnDestroy.addEventListener('click', destroy);
